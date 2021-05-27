@@ -72,6 +72,28 @@ If I use groups with
 in three different terminals, I'll be able to see the normalization of the consumers usage which produces the paralelism and better efficient resource consumming and performance.
 
 
+ After that you can see all the partitions, topics and stuff with:
+
+ `kafka-topics --describe --bootstrap-server localhost:29092 --topic mytopic`
+
+ You can see:
+
+ Topic: mytopic	PartitionCount: 3	ReplicationFactor: 3	Configs: 
+	Topic: mytopic	Partition: 0	Leader: 1	Replicas: 1,2,3	Isr: 1,2,3
+	Topic: mytopic	Partition: 1	Leader: 2	Replicas: 2,3,1	Isr: 2,3,1
+	Topic: mytopic	Partition: 2	Leader: 3	Replicas: 3,1,2	Isr: 3,1,2
+
+
+But for a specfic group you can:
+
+`kafka-consumer-groups --group a --bootstrap-server localhost:29092 --describe`
+
+GROUP           TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                       HOST            CLIENT-ID
+a               mytopic         2          20              20              0               consumer-a-1-fdd6c6fc-947c-45f3-84c4-60fe1b73ff0a /127.0.0.1      consumer-a-1
+a               mytopic         0          11              11              0               consumer-a-1-463c28a8-1d72-4b52-bdbc-35f98d0041f4 /127.0.0.1      consumer-a-1
+a               mytopic         1          18              18              0               consumer-a-1-ea51d063-d3a0-42c3-8f44-5a54c783561d /127.0.0.1      consumer-a-1
+
+
 
 
 
