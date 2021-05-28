@@ -17,6 +17,7 @@ namespace Kafka
                 .ConfigureServices((context, collection) =>
                 {
                     collection.AddHostedService<ProducerHostedService>();
+                    collection.AddHostedService<ConsumerHostedService>();
                 });
     }
 }

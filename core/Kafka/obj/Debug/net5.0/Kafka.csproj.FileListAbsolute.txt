@@ -46,3 +46,11 @@
 /home/dailyme/Coding/Kafka/core/Kafka/obj/Debug/net5.0/ref/Kafka.dll
 /home/dailyme/Coding/Kafka/core/Kafka/obj/Debug/net5.0/Kafka.pdb
 /home/dailyme/Coding/Kafka/core/Kafka/obj/Debug/net5.0/Kafka.genruntimeconfig.cache
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/kafka-sharp.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/LZ4.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/LZ4pn.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/Snappy.Standard.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/System.Reactive.Core.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/System.Reactive.Interfaces.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/System.Reactive.Linq.dll
+/home/dailyme/Coding/Kafka/core/Kafka/bin/Debug/net5.0/System.Runtime.InteropServices.WindowsRuntime.dll

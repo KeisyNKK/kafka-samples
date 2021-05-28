@@ -25,7 +25,7 @@ namespace Kafka.Hosts
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             for(var i = 0; i < 100; i++){
-                var value = $"Hello world {i}";
+                var value = $"Kafka s {i}";
                 _logger.LogInformation(value);
                 await _producer.ProduceAsync("mytopic", new Message<Null, string>(){
                     Value = value
