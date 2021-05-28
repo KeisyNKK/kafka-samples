@@ -60,43 +60,29 @@ To make your data fault-tolerant and highly-available, every topic can be replic
 
 # Start up
 
-Tópicos: o tubo de entrada das mensagens
-Partição:
-Partições distribuídas ( apenas orenadas pela key - carteira)
-Producers que podem ter não garantia, garantia parcial ou garantia total
-A depender de não saber se gravou, saber que gravou mas poder cair, saber que gravou e replicou
-Ack 1 Ack 0 Ack -1
-At most once, at least once, excactly once
-1 - Super performance, mas posso perder uma ou outra
-2 - pode gerar duplicidade
-3 - apenas uma vez
-Imdepotência de produtores
-ON não duplica, não eficiente
-OFF duplica se rolar
-Consumers
-Producers cria, kafta gerencia, consumer lê
-while true que sempre lê as mensagens
-1 - Um consumer pode ler de várias partições de um mesmo tópico
-2 - Há o conceito de grupo de consumidores
-3 - Num tópico com n partições é ideal deixar o kafka distribuir a leitura sem sobrecarga de nenhuma por meio da criação de um número de consumidores o mais próximo de n possível. Mas apenas um consumer pode estar ouvindo uma partição, de modo que qualquer valor excedente a n produza consumers ociosos
-4 - É possível consumers fazerem leitura de tópicos distintos.
-Consumers rebalance:
-Toda vez que muda o número de cosnumers o rebalanceamente da distribuição entre provedores e leitores é automático
-Segurança: é possível que a mensage producer - kafka e broker - consumer seja, em ambos os casos, criptografadas
-É possível haver tanto autenticação quanto autorização, por meio de credenciais
-kafka connect: pegar informações de um lugar e passar para outro lugar
-Kafka rest proxy : caso não queiramos usar driver padrão e queiramos, na real conectar via http.
-today
-Compatibilidade de dados:
-Confluent Schema registry - pelo problema de conversibilidade de dados e contrato
-Você com ele especifica o Schema/Model... O padrão no qual a mensagem estará
-IDL ( Interface Description Language )
-Apache AVRO
-Protobuffer
-Com eles é possível adequar as mensagens ao padrão de interesse
-Kafka Streams
-O Streams fazem parte do ecossistema do kafka, mas no fundo é apenas um biblioteca feita em java cujas finalidades são: Real-time data processing and transformation library
-É possível, a partir dele fazer transformação em tempo real dos dados e conseguir adaptá-los, gerenciá-lo e, dentro disso, garantir a usabilidade e persistência deles, uma vez que serão gerenciados pelo kafka
-Conflutent ksqDB
+Topics: the message entry tube 
+Partition: Distributed partitions (only keyed by the key - portfolio)
+Producers that may have no guarantee, partial guarantee or full guarantee Depending on not knowing if you recorded, knowing that you recorded but being able to fall, knowing that you recorded and replied 
+Ack 1 Ack 0 Ack -1 
+At most once, 1 - Super performance, but I can lose one or the other
+at least once, 2 - can generate duplication
+excactly once  3 - only once Imdepotency of producers ON does not duplicate, not efficient OFF doubles if scrolls Consumers
 
+Producers creates, kafta manages, consumer reads while true that always reads messages 1 - A consumer can read from multiple partitions on the same topic 2 - 
 
+There is the concept of consumer group 3 - On a topic with n partitions is ideal let kafka distribute the reading without overloading any by creating as many consumers as possible. But only one consumer can be listening to a partition, so that any value in excess of n produces idle consumers 
+
+4 - It is possible for consumers to read different topics. Consumers rebalance: Whenever the number of cosnumers changes, the rebalancing of the distribution between providers and readers is automatic 
+
+Security: it is possible that the message producer - kafka and broker - consumer is, in both cases, encrypted It is possible to have both authentication and authorization , using kafka connect credentials: get information from one place and move to another place Kafka rest proxy: in case we don't want to use a standard driver and we want to, in real connect via http. today Data compatibility: Confluent Schema registry - due to the problem of data and contract convertibility 
+
+You specify the Schema / Model with it ... 
+
+The standard in which the message will be IDL (Interface Description Language) 
+Apache AVRO 
+Protobuffer 
+
+With them it is possible to adapt the messages to the pattern of interest 
+
+Kafka Streams Streams are part of the kafka ecosystem, but in the end it is just a library made in java whose purposes are: 
+  Real-time data processing and transformation library It is possible, from it to make real-time transformation of data and be able to adapt them, manage them and, within that, guarantee their usability and persistence, since they will be managed by kafka Conflutent ksqDB
