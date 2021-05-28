@@ -1,0 +1,1 @@
+# Here we're going to store insits and ideas aroud Kafka modeling
