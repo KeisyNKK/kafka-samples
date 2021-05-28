@@ -17,7 +17,7 @@ namespace Kafka.Hosts
             _logger = logger;
             var config = new ProducerConfig()
             {
-                BootstrapServers = "localhost:9292"    
+                BootstrapServers = "localhost:29092"    
             };
 
             _producer = new ProducerBuilder<Null, string>(config).Build();
@@ -27,7 +27,7 @@ namespace Kafka.Hosts
             for(var i = 0; i < 100; i++){
                 var value = $"Hello world {i}";
                 _logger.LogInformation(value);
-                await _producer.ProduceAsync("demo", new Message<Null, string>(){
+                await _producer.ProduceAsync("mytopic", new Message<Null, string>(){
                     Value = value
                 }, cancellationToken);
             }
