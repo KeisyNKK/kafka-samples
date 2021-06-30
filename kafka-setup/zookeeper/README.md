@@ -115,4 +115,110 @@ server.3=zookeeper3:2888:3888
 - **server.x**: So we can have as many zookeepers as we want.
 
 
- 
+ # AWS Configuration
+
+First thing we do is going to the **VPC Dashboard **on AWS.
+
+Click on subnets to make sure you find three minimum, cause they are the availability zone  and we’ll need three for set up.
+
+Now we have to be sure the ending of each ip for the avaiable zone what zone it is: a,b or c. Taking not to them:
+
+172.31.**16.0**/20   - sa-east-1**b**
+
+ 172.31.**32.0**/20  - sa-east-1**c**
+
+172.31.**0.0**/20      -  sa-east-1**a **
+
+### EC2
+
+So, in the EC2 console we’ll launch an EC2 instance. And that’s going to be our first server and, for it we’re later setting up our security group and so on.
+
+### Select the image
+
+We’re selecting ubuntu 16.
+
+### Select instance type
+
+we’re using a t2.medium because it has 4 GiB of RAM and 2 CPUs, so it’s multithread.
+
+
+![](https://whimuc.com/DXBQizK3E8jiJNfno2A2eh/DitMVnxjQdKaQi.png)
+
+We can keep from here by adding the ssh connection from our computer and that’s so cool. Good we paid the course
+
+with say like 
+
+`ssh -i <your_key_name> ubuntu@<your_ip>`
+
+if it's necessary you
+
+`chmod 0600 <your_key_name>`
+
+
+# Sigle Machine Setup
+
+1. SSH into your machine
+2. Install some necessary (java) and helpful packages on the machine
+3. Disable RAM Swap
+4. Add hosts mapping from hostname to public ips to /etc/hosts
+5. Download & Configure Zookeeper on the machine
+6. Launch Zookeeper on the machine to test
+7. Setup Zookeeper as a service on the machine
+
+### Machine packages installation
+
+```bash
+#!/bin/bash
+# Packages
+sudo apt-get update && \
+      sudo apt-get -y install wget ca-certificates zip net-tools vim nano tar netcat
+# Java Open JDK 8
+sudo apt-get -y install openjdk-8-jdk
+java -version
+# Disable RAM Swap - can set to 0 on certain Linux distro
+sudo sysctl vm.swappiness=1
+echo 'vm.swappiness=1' | sudo tee --append /etc/sysctl.conf
+# Add hosts entries (mocking DNS) - put relevant IPs here
+echo "172.31.9.1 kafka1
+172.31.9.1 zookeeper1
+172.31.19.230 kafka2
+172.31.19.230 zookeeper2
+172.31.35.20 kafka3
+172.31.35.20 zookeeper3" | sudo tee --append /etc/hosts
+# download Zookeeper and Kafka. Recommended is latest Kafka (0.10.2.1) and Scala 2.12
+wget https://archive.apache.org/dist/kafka/0.10.2.1/kafka_2.12-0.10.2.1.tgz
+tar -xvzf kafka_2.12-0.10.2.1.tgz
+rm kafka_2.12-0.10.2.1.tgz
+mv kafka_2.12-0.10.2.1 kafka
+cd kafka/
+# Zookeeper quickstart
+cat config/zookeeper.properties
+bin/zookeeper-server-start.sh config/zookeeper.properties
+# binding to port 2181 -> you're good. Ctrl+C to exit
+# Testing Zookeeper install
+# Start Zookeeper in the background
+bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+bin/zookeeper-shell.sh localhost:2181
+ls /
+# demonstrate the use of a 4 letter word
+echo "ruok" | nc localhost 2181 ; echo
+# Install Zookeeper boot scripts
+sudo nano /etc/init.d/zookeeper
+sudo chmod +x /etc/init.d/zookeeper
+sudo chown root:root /etc/init.d/zookeeper
+# you can safely ignore the warning
+sudo update-rc.d zookeeper defaults
+# stop zookeeper
+sudo service zookeeper stop
+# verify it's stopped
+nc -vz localhost 2181
+# start zookeeper
+sudo service zookeeper start
+# verify it's started
+nc -vz localhost 2181
+echo "ruok" | nc localhost 2181 ; echo
+# check the logs
+cat logs/zookeeper.out
+
+```
+It’s good to know that by mocking the ips we want to, we don’t need to remember the ips anymore.
