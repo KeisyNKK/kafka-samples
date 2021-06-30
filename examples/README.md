@@ -67,7 +67,7 @@ It's nice to notice that it's not in the same order.
 
 If I use groups with 
 
-`kafka-console-consumer --broker-list localhost:29092 --topic mytopic --group a`
+`kafka-console-consumer --bootstrap-server localhost:29092 --topic mytopic --group a`
 
 in three different terminals, I'll be able to see the normalization of the consumers usage which produces the paralelism and better efficient resource consumming and performance.
 
