@@ -113,3 +113,6 @@ server.3=zookeeper3:2888:3888
 - **initLimit**: Is how many ticks it takes to initialize in synchronization. (in the case above it’s 10*2000 that is 20 seconds for the initial synchronization.
 - **syncLimit:  **The number of ticks that can pass between sending a request and getting an acknowledgment. If, so, in 5 ticks we don’t get a sync the zookeeper will fail.
 - **server.x**: So we can have as many zookeepers as we want.
+
+
+ 
