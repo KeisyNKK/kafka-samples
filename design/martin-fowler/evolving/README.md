@@ -45,3 +45,22 @@ declarative interfaces that can contort the data they hold into pretty much any
 shape you might desire. That’s exactly what a data scientist needs for an explora‐
 tory investigation, but it’s not so great for managing the spiral of interservice
 dependencies in a burgeoning service estate.
+
+
+# The REST-to-ETL Problem
+
+A second, often more common, issue when you’re faced with a data service is
+that it actually becomes preferable to suck the data out so it can be held and
+manipulated locally (Figure 8-4). There are lots of reasons for this to happen in
+practice, but some of the main ones are:
+• The data needs to be combined with some other dataset.
+• The data needs to be closer, either due to geography or to be used offline
+(e.g., on a mobile).
+• The data service displays operational issues, which cause outages down‐
+stream.
+• The data service doesn’t provide the functionality the client needs and/or
+can’t change quick enough.
+
+
+Data on the Inside and
+Data on the Outside.
