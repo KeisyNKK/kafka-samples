@@ -21,6 +21,7 @@ get /my-node/deeper-node
 rmr /my-node
 ls /
 # create a watcher
+#! Important: the Watcher command is only a one time thing
 create /node-to-watch ""
 get /node-to-watch true
 set /node-to-watch "has-changed"

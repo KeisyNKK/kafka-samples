@@ -38,13 +38,18 @@ bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
 #* it's to see if zookeeper shell is running
 bin/zookeeper-shell.sh localhost:2181
 ls /
-# demonstrate the use of a 4 letter word
+# demonstrate the use of a 4 letter word 
+#* asks "Zookeeper are you okay?" if the answare is "imok" it means "I am Okay". Congrads
 echo "ruok" | nc localhost 2181 ; echo
 
+
 # Install Zookeeper boot scripts
-sudo nano /etc/init.d/zookeeper
+sudo nano /etc/init.d/zookeeper #! I comes from ../zookeeper/zookeeper has to be added in a script
+
+#* make the file excecutable
 sudo chmod +x /etc/init.d/zookeeper
 sudo chown root:root /etc/init.d/zookeeper
+
 # you can safely ignore the warning
 sudo update-rc.d zookeeper defaults
 # stop zookeeper

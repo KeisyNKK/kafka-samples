@@ -223,4 +223,45 @@ cat logs/zookeeper.out
 ```
 It’s good to know that by mocking the ips we want to, we don’t need to remember the ips anymore.
 
-So let's jump to a folder for more instalation
+# Zookeeper CLI
+
+Let’s learn how to navigate and use Zookeeper command line interface. So let’s:
+
+1. Create node, sub node, etc...
+2. Get and set data for a node
+3. Watch a node
+4. Delete a node
+
+ So we’re going to try the following commands:
+
+```bash
+#!/bin/bash
+# include zookeeper-shell examples
+bin/zookeeper-shell.sh localhost:2181
+# display help
+help
+# display root
+ls /
+create /my-node "foo"
+ls /
+get /my-node
+get /zookeeper
+create /my-node/deeper-node "bar"
+ls /
+ls /my-node
+ls /my-node/deeper-node
+get /my-node/deeper-node
+# update data version to see increased version counter
+set /my-node/deeper-node "newdata"
+get /my-node/deeper-node
+# removes are recursive
+rmr /my-node
+ls /
+# create a watcher
+#! Important: the Watcher command is only a one time thing
+create /node-to-watch ""
+get /node-to-watch true
+set /node-to-watch "has-changed"
+rmr /node-to-watch
+
+```
