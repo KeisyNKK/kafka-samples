@@ -222,3 +222,5 @@ cat logs/zookeeper.out
 
 ```
 It’s good to know that by mocking the ips we want to, we don’t need to remember the ips anymore.
+
+So let's jump to a folder for more instalation
