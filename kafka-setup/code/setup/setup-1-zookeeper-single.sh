@@ -20,6 +20,7 @@ echo "172.31.9.1 kafka1
 172.31.35.20 zookeeper3" | sudo tee --append /etc/hosts
 
 # download Zookeeper and Kafka. Recommended is latest Kafka (0.10.2.1) and Scala 2.12
+#! Cool to verify the version for now a days
 wget https://archive.apache.org/dist/kafka/0.10.2.1/kafka_2.12-0.10.2.1.tgz
 tar -xvzf kafka_2.12-0.10.2.1.tgz
 rm kafka_2.12-0.10.2.1.tgz
@@ -33,6 +34,8 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 # Testing Zookeeper install
 # Start Zookeeper in the background
 bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+
+#* it's to see if zookeeper shell is running
 bin/zookeeper-shell.sh localhost:2181
 ls /
 # demonstrate the use of a 4 letter word
