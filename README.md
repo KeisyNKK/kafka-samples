@@ -86,3 +86,9 @@ With them it is possible to adapt the messages to the pattern of interest
 
 Kafka Streams Streams are part of the kafka ecosystem, but in the end it is just a library made in java whose purposes are: 
   Real-time data processing and transformation library It is possible, from it to make real-time transformation of data and be able to adapt them, manage them and, within that, guarantee their usability and persistence, since they will be managed by kafka Conflutent ksqDB
+
+## What you'll see in the folders
+
+- code: has all necessary implementation code to put kafka up and running into four aws EC2
+- zookeeper-explained: Explain all you need to know about zookeeper for this repo
+- kafka-explained: Explain all you need to know about kafka for this repo
