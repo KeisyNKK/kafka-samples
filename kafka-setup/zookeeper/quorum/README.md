@@ -46,3 +46,9 @@ bin/zookeeper-shell.sh localhost:2181
 # not happy
 ls /
 ```
+
+To enter into a zookeeper go like:
+
+``` 
+bin/zookeeper-shell.sh zookeeper2:2181
+```

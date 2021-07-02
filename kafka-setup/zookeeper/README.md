@@ -265,3 +265,33 @@ set /node-to-watch "has-changed"
 rmr /node-to-watch
 
 ```
+
+# Zookeeper filesystem
+
+We gonna understand how zookeeper created it’s files, by:
+
+- Understanding the files created on the filesystem
+- Besides **myid**, the rest of the files should remain untouched. They are managed by Zookeeper
+- / (root)
+    - myid: file respresenting the server id. That’s how Zookeeper knows its idenetity
+    - version-2/: folder that goldes the zookeeper data
+        - AcceptEpoch and CurrentEpoch: internal to Zookeeper
+        - Log.X: Zookeeper data files
+
+# Zookeeper performance
+
+The main thing you have to care about is latency. Latency is key for Zookeeper, and any of these variables will affect it:
+
+- Fast disk (SSD)
+- No RAM Swap
+- Separate disk for snapshots and logs
+- High performance network (low latency) - Never too far away from each other
+- Reasonable number of Zookeeper Servers
+- Isolation of Zookeeper instances from other processes ( have one instance for zookeeper and another for Kafka - six instances for our case).
+
+# Zookeeper in AWS
+
+- If you use private IPs, you may have the [cannot-open-channel](https://stackoverflow.com/questions/30940981/zookeeper-error-cannot-open-channel-to-x-at-election-address) error
+- Use Netflix Exhibitor
+- Reserve your instances if you know you will use them for over a year (decreased cost)
+- Or you can use Amazon EMR to provision a Zookeeper cluster, but have less control
